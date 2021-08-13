@@ -6,15 +6,18 @@
     "build": "tsc && vite build && cargo tauri build"
   },
   "dependencies": {
-    "goober": "^2.0.37",
-    "preact": "^10.5.13",
-    "unistore": "^3.5.2"
+    "@monaco-editor/react": "^4.2.2",
+    "@xstyled/emotion": "^3.0.2",
+    "deepmerge": "^4.2.2",
+    "preact": "^10.5.14",
+    "wouter-preact": "^2.7.4"
   },
   "devDependencies": {
-    "@preact/preset-vite": "^2.0.0",
-    "concurrently": "^6.1.0",
-    "prettier": "^2.3.0",
-    "typescript": "^4.1.3",
-    "vite": "^2.3.3"
+    "@preact/preset-vite": "^2.1.0",
+    "@types/react": "^17.0.17",
+    "concurrently": "^6.2.1",
+    "prettier": "^2.3.2",
+    "typescript": "^4.3.5",
+    "vite": "^2.4.4"
   }
 }
