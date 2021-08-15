@@ -1,24 +1,23 @@
 import { x } from '@xstyled/emotion';
 import { Link } from 'wouter-preact';
 import { Logo } from '../../components/Logo';
+import { NewButton } from './NewButton';
+import { SearchBox } from './SearchBox';
 
 export function IndexPage(): JSX.Element {
   return (
-    <x.div>
-      <x.h1 fontSize="6xl" fontWeight="bold" userSelect="none" cursor="default">
-        <Logo />
-        EyeSQL
-      </x.h1>
-      <x.ul>
-        <x.li>
-          <Link to="/help">
-            <x.a>몰랑</x.a>
-          </Link>
-          <Link to="/help">
-            <x.a>몰랑</x.a>
-          </Link>
-        </x.li>
-      </x.ul>
+    <x.div w="100vw" p={8}>
+      <x.nav
+        w="100%"
+        display="grid"
+        gridTemplateRows="auto"
+        gridTemplateColumns="1fr auto"
+        gap={4}
+      >
+        <SearchBox />
+        <NewButton />
+      </x.nav>
+      <x.ul></x.ul>
     </x.div>
   );
 }
