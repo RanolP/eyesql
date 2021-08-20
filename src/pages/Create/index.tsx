@@ -47,7 +47,11 @@ export function CreatePage(): JSX.Element {
           <x.input borderBottomWidth={2} borderColor="primary" />
 
           <x.label>비밀번호</x.label>
-          <x.input borderBottomWidth={2} borderColor="primary" />
+          <x.input
+            type="password"
+            borderBottomWidth={2}
+            borderColor="primary"
+          />
         </x.form>
       </x.main>
     </x.div>
