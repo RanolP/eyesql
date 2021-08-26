@@ -1,4 +1,4 @@
-import { defaultTheme, th } from '@xstyled/system';
+import { defaultTheme, th } from '@xstyled/emotion';
 import deepmerge from 'deepmerge';
 
 export const EyeSqlTheme = deepmerge(defaultTheme, {

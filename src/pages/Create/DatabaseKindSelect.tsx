@@ -1,6 +1,6 @@
 import { Props, th, Theme, useTheme, x } from '@xstyled/emotion';
-import { DatabaseKind } from '../../lib/eyesql/database-connection';
-import { DiMsqlServer, DiMysql, DiPostgresql, DiSqllite } from 'react-icons/di';
+import { DatabaseKind } from '../../lib/app/model/database-kind';
+import { DiMsqlServer, DiMysql, DiPostgresql } from 'react-icons/di';
 import Select, {
   OptionProps,
   SingleValueProps,
@@ -8,6 +8,7 @@ import Select, {
   StylesConfig,
 } from 'react-select';
 import { CSSObject } from '@emotion/serialize';
+import { useCallback } from 'react';
 
 export interface DatabaseKindSingleValueProps extends SingleValueProps<{}> {
   data: {
@@ -23,7 +24,6 @@ export interface DatabaseKindOptionProps extends OptionProps<{}, false> {
 const IconMap: Record<DatabaseKind, JSX.Element> = {
   [DatabaseKind.PostgreSQL]: <DiPostgresql />,
   [DatabaseKind.MySQL]: <DiMysql />,
-  [DatabaseKind.SQLite]: <DiSqllite />,
   [DatabaseKind.MSSQL]: <DiMsqlServer />,
 };
 
@@ -81,17 +81,35 @@ const Styles = (props: Props<Theme>): StylesConfig<{}, false> => {
   };
 };
 
-export function DatabaseKindSelect(): JSX.Element {
+export interface DatabaseKindSelectProps {
+  name?: string;
+  required?: boolean;
+  onSelect?: (kind: DatabaseKind) => unknown;
+}
+
+export function DatabaseKindSelect({
+  onSelect,
+  ...props
+}: DatabaseKindSelectProps): JSX.Element {
   const theme = useTheme();
+
+  const handleChange = useCallback(
+    (option: typeof AvailableOptions[number]) => {
+      onSelect?.(option.value);
+    },
+    [onSelect],
+  );
 
   return (
     <Select
       options={AvailableOptions}
+      onChange={handleChange}
       components={{
         Option: DatabaseKindOption,
         SingleValue: DatabaseKindSingleValue,
       }}
       styles={Styles({ theme })}
+      {...props}
     />
   );
 }

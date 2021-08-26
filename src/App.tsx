@@ -1,5 +1,6 @@
-import { ThemeProvider } from '@emotion/react';
+import { ThemeProvider } from '@xstyled/emotion';
 import { ColorModeProvider, Preflight } from '@xstyled/emotion';
+import { Provider } from 'jotai';
 import { Route, Router, Switch } from 'wouter-preact';
 import { CreatePage } from './pages/Create';
 import { IndexPage } from './pages/Index';
@@ -11,22 +12,23 @@ export function App(): JSX.Element {
   return (
     <ThemeProvider theme={EyeSqlTheme}>
       <ColorModeProvider>
-        <Preflight />
-        <BaseStyle />
-
-        <Router>
-          <Switch>
-            <Route path="/">
-              <IndexPage />
-            </Route>
-            <Route path="/create">
-              <CreatePage />
-            </Route>
-            <Route>
-              <NotFoundPage />
-            </Route>
-          </Switch>
-        </Router>
+        <Provider>
+          <Preflight />
+          <BaseStyle />
+          <Router>
+            <Switch>
+              <Route path="/">
+                <IndexPage />
+              </Route>
+              <Route path="/create">
+                <CreatePage />
+              </Route>
+              <Route>
+                <NotFoundPage />
+              </Route>
+            </Switch>
+          </Router>
+        </Provider>
       </ColorModeProvider>
     </ThemeProvider>
   );
